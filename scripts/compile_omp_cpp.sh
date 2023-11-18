@@ -1,4 +1,5 @@
 #!/bin/sh
+# Compile C++ OpenMP Files (ARM64 Exclusive)
 
 echo "Enter you OpenMP program filename (without extension): "
 read filename
