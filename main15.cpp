@@ -18,12 +18,22 @@ int main(int argc, char *argv[]){
     population.set_profits("profits15.txt");
 
     start_time = omp_get_wtime();
+    
+    #pragma omp parallel num_threads(8)
+    {
+        #pragma omp master
+        {
+            cout << "Threads: " << omp_get_num_threads();
+        }
+    }
+    
     population.get_repaired_population();
     run_time = omp_get_wtime() - start_time;
 
     population.set_fitness(population.repaired_population);
 
-    printf("%f", run_time);
+    cout << "\nChromosomes: " << CHROMOSOMES_NUM;
+    printf("\nRepaired in %f seconds", run_time);
     // cout << "\nREPAIRED POPULATION:\n"; population.display_population(population.repaired_population);
     // cout << "WEIGHTS:\n"; population.display_vector(population.weights);
     // cout << "PROFITS:\n"; population.display_vector(population.profits);
