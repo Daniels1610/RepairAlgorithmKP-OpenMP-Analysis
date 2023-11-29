@@ -9,7 +9,7 @@ const int KNAPSACK_CAPACITY = 750;
 double start_time, run_time;
 
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     // omp_set_num_threads(atoi(argv[1]));
     Population<int> population(CHROMOSOMES_NUM, GENES_NUM, KNAPSACK_CAPACITY);
     // cout << "INITIAL POPULATION: \n"; population.display_population(population.population);
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]){
 
     start_time = omp_get_wtime();
     
-    #pragma omp parallel num_threads(8)
+    #pragma omp parallel num_threads(4)
     {
         #pragma omp master
         {

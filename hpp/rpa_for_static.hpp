@@ -6,10 +6,11 @@
 #include "support.hpp"
 
 template <typename T>
-std::vector<std::vector<int> > repair_population(std::vector<std::vector<int> >& population, std::vector<T> weights, T knapsack_capacity) {
+std::vector<std::vector<int> > repair_population(std::vector<std::vector<int> > &population, std::vector<T> weights, T knapsack_capacity) {
+    
     std::vector<std::vector<int> > population_repaired = population;
 
-    #pragma omp parallel num_threads(8)
+    #pragma omp parallel num_threads(4)
     {   
         int i=0;
         int solutions = population.size();
