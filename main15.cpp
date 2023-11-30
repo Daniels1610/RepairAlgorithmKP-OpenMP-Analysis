@@ -19,14 +19,6 @@ int main(int argc, char *argv[]) {
 
     start_time = omp_get_wtime();
     
-    #pragma omp parallel num_threads(4)
-    {
-        #pragma omp master
-        {
-            cout << "Threads: " << omp_get_num_threads();
-        }
-    }
-    
     population.get_repaired_population();
     run_time = omp_get_wtime() - start_time;
 

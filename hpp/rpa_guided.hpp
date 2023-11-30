@@ -9,53 +9,37 @@ template <typename T>
 std::vector<std::vector<int> > repair_population(std::vector<std::vector<int> > &population, std::vector<T> weights, T knapsack_capacity) {
     
     std::vector<std::vector<int> > population_repaired = population;
-
-    #pragma omp parallel num_threads(4)
-    {   
-        int i=0;
+        int i;
         int solutions = population.size();
         int alleles_num = population[0].size();
         bool knapsack_full = false;
-        int NUM_THREADS = omp_get_num_threads();
 
-        #pragma omp parallel for schedule(guided) firstprivate(population_repaired)
-        for (i = 0; i < solutions; i+=NUM_THREADS) { 
-            if (sum(i, population, weights) > knapsack_capacity) {
-                knapsack_full = true;
-            }
+        #pragma omp parallel for num_threads(8) private(i) schedule(guided)
+        for (i = 0; i < solutions; i+=omp_get_num_threads()) {
+            bool knapsack_full = sum(i, population, weights) > knapsack_capacity;
 
-            #pragma omp flush (knapsack_full)
             while (knapsack_full) {
-                #pragma omp parallel for schedule(guided) firstprivate(i)
-                for (int j = 0; j < alleles_num; j+=NUM_THREADS) {
+                for (int j = 0; j < alleles_num; j++) {
                     population[i][j] = 0;
                     if (sum(i, population, weights) < knapsack_capacity) {
                         knapsack_full = false;
-                        #pragma omp critical
                         population_repaired = replace_chromosome(i, population_repaired, population);
+                        break;
                     }
                 }
-                break;
             }
 
             while (!knapsack_full) {
-                #pragma omp parallel for schedule(guided) firstprivate(i)
-                {
-                    for (int h = 0; h < alleles_num; h+=NUM_THREADS) {
-                        population[i][h] = 1;
-                        if (sum(i, population, weights) > knapsack_capacity) {
-                            population[i][h] = 0;
-                        }
+                for (int h = 0; h < alleles_num; h++) {
+                    population[i][h] = 1;
+                    if (sum(i, population, weights) > knapsack_capacity) {
+                        population[i][h] = 0;
                     }
                 }
-
-                #pragma omp critical
                 population_repaired = replace_chromosome(i, population_repaired, population);
                 break;
             }
         }
-
-    }
     return population_repaired;
 }
 #endif
