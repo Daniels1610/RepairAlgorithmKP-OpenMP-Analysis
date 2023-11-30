@@ -1,4 +1,8 @@
 #!/bin/sh
 # Compile C++ Files (macOS Exclusive)
 
-g++ -o executable rpa.cpp PopulationGen.cpp
+echo "Enter you C++ program filename (without extension): "
+read filename
+
+g++ -o "$filename" "$filename.cpp"
+./"$filename"

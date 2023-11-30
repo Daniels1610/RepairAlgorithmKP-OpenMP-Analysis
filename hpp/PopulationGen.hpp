@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iterator>
 #include <iostream>
-#include "rpa_spmd.hpp"
+#include "rpa_lazyspmd.hpp"
 
 using namespace std;
 

@@ -9,7 +9,6 @@
 template <typename T>
 std::vector<std::vector<int> > repair_population(std::vector<std::vector<int> >& population, std::vector<T> weights, T knapsack_capacity) {
     int i;
-    int numThreads;
     bool knapsack_full = false;
     int solutions = population.size();
     int alleles_num = population[0].size();

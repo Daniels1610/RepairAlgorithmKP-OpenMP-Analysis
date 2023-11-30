@@ -1,7 +1,7 @@
 #!/bin/sh
 # Executes a C++ OpenMP program and outputs the result into a CSV file
 
-EXECUTION_NUM=5
+EXECUTION_NUM=1
 
 echo "Enter you OpenMP program filename (without extension): "
 read filename

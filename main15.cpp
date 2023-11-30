@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int CHROMOSOMES_NUM = 1000; 
+const int CHROMOSOMES_NUM = 6000; 
 const int GENES_NUM = 15; 
 const int KNAPSACK_CAPACITY = 750;
 double start_time, run_time;
