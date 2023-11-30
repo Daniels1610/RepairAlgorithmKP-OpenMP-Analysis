@@ -24,8 +24,7 @@ int main(int argc, char *argv[]) {
 
     population.set_fitness(population.repaired_population);
 
-    cout << "\nChromosomes: " << CHROMOSOMES_NUM;
-    printf("\nRepaired in %f seconds", run_time);
+    printf("%f seconds", run_time);
     // cout << "\nREPAIRED POPULATION:\n"; population.display_population(population.repaired_population);
     // cout << "WEIGHTS:\n"; population.display_vector(population.weights);
     // cout << "PROFITS:\n"; population.display_vector(population.profits);
