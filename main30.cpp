@@ -10,13 +10,14 @@ double start_time, run_time;
 
 
 int main(int argc, char *argv[]){
-    omp_set_num_threads(atoi(argv[1]));
+    
     Population<int> population(CHROMOSOMES_NUM, GENES_NUM, KNAPSACK_CAPACITY);
     // cout << "INITIAL POPULATION: \n"; population.display_population(population.population);
     
     population.set_weights("weights30.txt");
     population.set_profits("profits30.txt");
 
+    omp_set_num_threads(atoi(argv[1]));
     start_time = omp_get_wtime();
     population.get_repaired_population();
     run_time = omp_get_wtime() - start_time;

@@ -1,4 +1,4 @@
 #!/bin/sh
-# Compile C++ Files (ARM64 Exclusive)
+# Compile C++ Files (macOS Exclusive)
 
 g++ -o executable rpa.cpp PopulationGen.cpp

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Executes an C++ OpenMP program from 1 Thread through X Threads (ARM64 Exclusive)
+# Executes an C++ OpenMP program from 1 Thread through X Threads (macOS Exclusive)
 
 THREADS_NUM=8
 EXECUTION_NUM=5

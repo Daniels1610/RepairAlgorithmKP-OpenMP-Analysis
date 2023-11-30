@@ -1,6 +1,7 @@
 #ifndef SUPPORT_HPP
 #define SUPPORT_HPP
 
+#include <omp.h>
 #include <vector>
 
 template <typename T>
@@ -14,6 +15,7 @@ T sum(int chromosome_ID, std::vector<std::vector<int> > initial_population, std:
 
 std::vector<std::vector<int> > replace_chromosome(int chromosome_ID, std::vector<std::vector<int> > population_repaired, std::vector<std::vector<int> > population){
     for (int i = 0; i < population[0].size(); i++){
+        #pragma omp critical
         population_repaired[chromosome_ID][i] = population[chromosome_ID][i];
     }
     return population_repaired;

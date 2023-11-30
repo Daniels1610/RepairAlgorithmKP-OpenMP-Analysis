@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iterator>
 #include <iostream>
-#include "rpa_serial.hpp"
+#include "rpa_spmd.hpp"
 
 using namespace std;
 
