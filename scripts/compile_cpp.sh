@@ -1,4 +1,4 @@
 #!/bin/sh
 # Compile C++ Files (ARM64 Exclusive)
 
-g++ -o executable rpa.cpp PopulationGen.cpp
+g++ -o executable ../hpp/rpa.cpp ../hpp/PopulationGen.cpp
